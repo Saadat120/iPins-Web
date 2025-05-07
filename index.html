@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/style.css">
+  <script type="module" src="./js/auth.js"></script>
+  <title>Pins</title>
+</head>
+
+<body>
+  <div class="search">
+    <h1 style="margin: auto; color: white;">Where To!</h1>
+    <form id="searchForm"> 
+      <input id="searchBar" name="searchBar" type="text" value="" />
+    </form>
+    </div>
+     
+  <!-- Login Button -->
+  <div class="auth-buttons">
+    <button id="openModalBtn">Login</button>
+  </div>
+
+  <!-- Modal -->
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+     
+
+      <!-- Login Form -->
+      <div id="loginForm"> 
+        <span id="closeModal" class="close">&times;</span>
+        <form id="loginForm">
+          <h2>Login</h2>
+          <input type="text" placeholder="Username" id="loginEmail">
+          <input type="password" placeholder="Password" id="loginPassword">
+          <button id="loginBtn">Login</button>
+        </form>
+        <p>Don't have an account? <a href="#" id="showRegister">Register</a></p>
+      </div>
+
+      <!-- Register Form -->
+      <div id="registerForm" style="display: none;">
+        <h2>Register</h2>
+        <form id="registerForm">
+          <input type="text" placeholder="Username">
+          <input type="email" placeholder="Email" id="registerEmail">
+          <input type="password" placeholder="Password" id="registerPassword">
+          <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+      </div>
+
+  <script>
+    document.getElementById("searchForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form from refreshing page
+
+    let searchQuery = document.getElementById("searchBar").value.trim();
+    if (searchQuery) {
+      window.location.href = `map.html?location=${encodeURIComponent(searchQuery)}`;
+    }
+  });
+
+   // Modal functionality
+   const openModalBtn = document.getElementById('openModalBtn');
+    const authModal = document.getElementById('authModal');
+    const closeModal = document.getElementById('closeModal');
+    const showRegister = document.getElementById('showRegister');
+    const showLogin = document.getElementById('showLogin');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+
+    openModalBtn.addEventListener('click', () => {
+      authModal.style.display = 'block';
+    });
+
+    closeModal.addEventListener('click', () => {
+      authModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === authModal) {
+        authModal.style.display = 'none';
+      }
+    });
+
+    showRegister.addEventListener('click', () => {
+      loginForm.style.display = 'none';
+      registerForm.style.display = 'block';
+    });
+
+    showLogin.addEventListener('click', () => {
+      registerForm.style.display = 'none';
+      loginForm.style.display = 'block';
+    });
+
+    // Handling Login Form
+  document.getElementById('loginForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+  
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+
+    loginUser(email, password);
+  });
+
+  document.getElementById('registerForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+  
+    const email = document.getElementById('registerEmail').value;
+    const password = document.getElementById('registerPassword').value;
+
+    loginUser(email, password);
+  });
+
+  </script>
+</body>
+</html>
