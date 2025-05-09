@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/style.css">
-  <script type="module" src="./js/auth.js"></script>
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="module" src="../js/auth.js"></script>
   <title>Pins</title>
 </head>
 
@@ -57,7 +57,7 @@
 
     let searchQuery = document.getElementById("searchBar").value.trim();
     if (searchQuery) {
-      window.location.href = `map.html?location=${encodeURIComponent(searchQuery)}`;
+      window.location.href = `/views/map.ejs?location=${encodeURIComponent(searchQuery)}`;
     }
   });
 
