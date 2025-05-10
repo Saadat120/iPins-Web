@@ -12,12 +12,8 @@ const key = process.env.API_KEY;
 app.use(cors());
 app.use(bodyParser.json());
 
-// Set EJS as view engine
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views')); // Assuming your map.html is in a "views" folder
-
 // Static files
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname)));
 
 // Route to render map.html with API key
 app.get('/map', (req, res) => {
