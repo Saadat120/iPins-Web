@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <title>Pins</title>
+</head>
+<body>
+  <!-- Profile Button -->
+  <div id="userProfile" style="position: fixed; top: 30px; right: 30px; z-index: 999;">
+    <button id="profileBtn" style="background: none; border: none; cursor: pointer;">
+      <img src="./assets/profile.png" alt="Profile" style="width: 56px; height: 56px; border-radius: 50%;" />
+    </button>
+  </div>
+
+  <!-- Injected Profile Modal -->
+  <div id="profileModalContainer"></div>
+
+  <!-- Search -->
+  <div class="search">
+    <h1 style="margin: auto; color: white;">Where To!</h1>
+    <form id="searchForm"> 
+      <input id="searchBar" name="searchBar" type="text" value="" />
+    </form>
+  </div>
+
+  <!-- Login/Register Modal -->
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+      <!-- Login -->
+      <div id="login"> 
+        <span id="closeModal" class="close">&times;</span>
+        <form id="loginForm">
+          <h2>Login</h2>
+          <input type="text" placeholder="Email" id="loginEmail" />
+          <input type="password" placeholder="Password" id="loginPassword" />
+          <p id="loginError" class="error-message" style="color: red;"></p>
+          <button id="loginBtn">Login</button>
+        </form>
+        <p>Don't have an account? <a href="#" id="showRegister">Register</a></p>
+      </div>
+
+      <!-- Register -->
+      <div id="register" style="display: none;">
+        <span id="closeModalRegister" class="close">&times;</span>
+        <h2>Register</h2>
+        <form id="registerForm">
+          <input type="text" placeholder="Username" id="registerUsername" />
+          <input type="email" placeholder="Email" id="registerEmail" />
+          <input type="password" placeholder="Password" id="registerPassword" />
+          <p id="registerError" class="error-message" style="color: red;"></p>
+          <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script type="module">
+    import { initAuthUI } from './js/auth.js';
+    initAuthUI();
+
+    document.getElementById("searchForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form from refreshing page
+
+    let searchQuery = document.getElementById("searchBar").value.trim();
+    if (searchQuery) {
+      window.location.href = `./map.html?location=${encodeURIComponent(searchQuery)}`;
+    }
+  });
+  </script>
+</body>
+</html>

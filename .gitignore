@@ -3,3 +3,7 @@
 
 # IDE/Editor files
 .vscode/           # Visual Studio Code
+node_modules/
+./firebase
+firebase-debug.log
+.firebaserc

@@ -13,7 +13,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Static files
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Route to render map.html with API key
 app.get('/map', (req, res) => {

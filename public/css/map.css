@@ -1,0 +1,280 @@
+:root {
+  --purple: #2b2b8e;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.search{
+  position: absolute;
+  width: 100%;
+  top: 30px;
+  left: 100px;
+  display: flex; /*Display used is flexible */
+  flex-direction: column; /*Place all items in searchbar in a row */
+  z-index: 10; /* Make sure it sits above the map */
+}
+
+#searchForm {
+  width: 30%;
+  /*Take full width of searchbar  */
+  display: flex;
+  flex-direction: row;
+}
+
+/*Child of searchbar and Styling for search bar */
+#searchBar {
+  width: 100%; /*Full width of searchbar */
+  height: 3rem;
+  /* color: var(--purple); */
+  text-align: center;
+  border-radius: 30px;
+  /* border: 2px white;
+  background-color: #d0c1e9; */
+  font-size: 1rem;
+  outline: none;
+  border-style: hidden;
+}
+
+/* Sidebar setup */
+.sidebar {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  height: 60%;
+  width: 300px;
+  background-color: white;
+  z-index: 12;
+  padding: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+  transform: translateX(0);
+}
+
+.sidebar.hidden {
+  transform: translateX(-100%);
+}
+
+/* Toggle button */
+.sidebar-toggle {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  left: 300px; /* sidebar width */
+  z-index: 13;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-left: none;
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  transition: left 0.3s ease;
+}
+
+/* Move toggle button to edge when sidebar is hidden */
+.sidebar.hidden + .sidebar-toggle {
+  left: 0;
+}
+
+.pinModal{
+  display: none;
+}
+
+#addPinBtn {
+  position: fixed;
+  top: 26px;
+  left: 20px;
+  width: 56px;
+  height: 56px;
+  font-size: 2rem;
+  border-radius: 50%;
+  background-color: var(--purple, #2b2b8e);
+  color: white;
+  border: none;
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+}
+
+#addPinModal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.pin-modal-content{
+  position: relative;
+  background-color: #fff;
+  margin-left: 2%;
+  margin-top: 7%;
+  padding: 2rem;
+  width: 320px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+}
+
+#addPinModal input,
+#addPinModal textarea,
+#addPinModal select {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+}
+
+#addPinModal select {
+  background-color: #f9f9f9;
+}
+
+#addPinModal label {
+  align-self: flex-start;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+#addPinModal button[type="submit"] {
+  width: 100%;
+  padding: 0.6rem;
+  background-color: var(--purple, #2b2b8e);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+#addPinModal button[type="submit"]:hover {
+  background-color: #1e1e70;
+}
+
+#addPinModal .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.8rem;
+  color: #888;
+  cursor: pointer;
+}
+
+#addPinModal .close:hover {
+  color: black;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.auth-buttons {
+  position: fixed;
+  width: 10%;
+  bottom: 20px;
+  right: 20px;
+}
+
+.auth-buttons button {
+  background-color: var(--purple);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.auth-buttons button:hover {
+  background-color: #1e1e70;
+}
+
+/* Modal Styling */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  position: relative;
+  background-color: white;
+  margin-left: 72%;
+  margin-top: 7%;
+  padding: 2rem;
+  border: 1px solid #888;
+  width: 300px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.modal-content input {
+  width: 94%;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+}
+
+.modal-content button {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: var(--purple);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #1e1e70;
+}
+
+.close {
+  position: absolute;
+  top: 1%;
+  right: 3%;
+  color: #aaa;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: black;
+}

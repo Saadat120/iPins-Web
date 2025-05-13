@@ -90,8 +90,10 @@ Styling for book title searchbar
 }
 
 .modal-content {
+  position: relative;
   background-color: white;
-  margin: 10% auto;
+  margin-left: 72%;
+  margin-top: 7%;
   padding: 2rem;
   border: 1px solid #888;
   width: 300px;
@@ -127,8 +129,8 @@ Styling for book title searchbar
 
 .close {
   position: absolute;
-  top: 10%;
-  right: 38%;
+  top: 1%;
+  right: 3%;
   color: #aaa;
   font-size: 2rem;
   font-weight: bold;
